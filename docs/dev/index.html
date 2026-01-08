@@ -45,9 +45,18 @@
         });
       }
       (async () => {
-        await setDBValue("devHostname", "192.168.10.51");
-        await setDBValue("devPort", "5173");
-        await setDBValue("devProtocol", "http:");
+        const params = new URLSearchParams(window.location.search);
+        const stop = params.get("stop");
+        if (!stop) {
+          await setDBValue("devHostname", "192.168.10.51");
+          await setDBValue("devPort", "5173");
+          await setDBValue("devProtocol", "http:");
+        } else {
+          await setDBValue("devHostname", "");
+          await setDBValue("devPort", "");
+          await setDBValue("devProtocol", "");
+        }
+
       })();
     </script>
   </body>
